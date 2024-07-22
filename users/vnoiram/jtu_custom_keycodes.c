@@ -52,11 +52,7 @@ bool process_record_user_jtu(uint16_t keycode, keyrecord_t *record) {
       print("jtu toggle\n");
 #endif
       if (record->event.pressed) {
-        if (is_jtu_active) {
-          is_jtu_active = false;
-        } else {
-          is_jtu_active = true;
-        }
+        is_jtu_active = !is_jtu_active;
       }
       break;
   }

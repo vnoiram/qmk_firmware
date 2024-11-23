@@ -10,6 +10,10 @@
 #include "vnoiram_key_override.h"
 #endif
 
+#ifdef AUTO_SHIFT_ENABLE
+#include "vnoiram_auto_shift.h"
+#endif
+
 #include "vnoiram_tapping_term.h"
 
 #include "vnoiram_process_record_user.h"

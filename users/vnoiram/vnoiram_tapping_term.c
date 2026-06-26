@@ -21,6 +21,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         //     return TAPPING_TERM + 270;
 #endif
             return TAPPING_TERM + 1350;
+        case KC_BSLS:
+            return TAPPING_TERM + 25;
         case LT(_ALTMOVE,KC_BSPC):
         case LCTL_T(KC_ESC):
         case LT(_SFT,KC_SPC):

@@ -36,6 +36,10 @@ ifeq ($(strip $(LEADER_ENABLE)), yes)
   # Include my fancy rgb functions source here
 	SRC += vnoiram_leader.c
 endif
+ifeq ($(strip $(MINE_LEADER_ENABLE)), yes)
+  OPT_DEFS += -DMINE_LEADER_ENABLE
+	SRC += vnoiram_leader.c
+endif
 
 # ONE_HAND_GAME_ENABLE
 ifeq ($(strip $(ONE_HAND_GAME_ENABLE)), yes)

@@ -7,6 +7,9 @@
 #if defined(ALT_TAB_ENABLE) || defined(ALT_TAB_BY_LAYER_ENABLE)
 #include "vnoiram_alt_tab.h"
 #endif
+#ifdef MINE_LEADER_ENABLE
+#include "vnoiram_leader.h"
+#endif
 #ifdef CONSOLE_ENABLE
 #include "print.h"
 #endif
@@ -23,6 +26,10 @@ void matrix_scan_user(void) {
 
 #ifdef TO_KEY_ENABLE
   matrix_scan_user_to_key();
+#endif
+
+#ifdef MINE_LEADER_ENABLE
+  matrix_scan_user_leader();
 #endif
 
   matrix_scan_keymap();

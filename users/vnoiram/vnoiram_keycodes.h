@@ -32,5 +32,8 @@ enum custom_keycodes {
 #endif
 #endif
 #endif
+#ifdef MINE_LEADER_ENABLE
+  MY_LEADER,
+#endif
   VNOIRAM_SAFE_RANGE,
 };

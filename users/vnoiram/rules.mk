@@ -52,9 +52,6 @@ ifeq ($(strip $(OLED_ENABLE)), yes)
   # Include my fancy rgb functions source here
 	SRC += vnoiram_oled.c
 endif
-ifeq ($(strip $(LEFT_OLED_DISABLE)), yes)
-  OPT_DEFS += -DLEFT_OLED_DISABLE
-endif
 
 # POINTING_DEVICE_AUTO_MOUSE_ENABLE
 ifeq ($(strip $(POINTING_DEVICE_AUTO_MOUSE_ENABLE)), yes)

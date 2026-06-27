@@ -55,7 +55,8 @@ endif
 # POINTING_DEVICE_AUTO_MOUSE_ENABLE
 ifeq ($(strip $(POINTING_DEVICE_AUTO_MOUSE_ENABLE)), yes)
   OPT_DEFS += -DPOINTING_DEVICE_AUTO_MOUSE_ENABLE
-	SRC += vnoiram_auto_mouse_layer.c
+	# vnoiram_auto_mouse_layer.c: 全行コメントで実質空のため除外
+	# SRC += vnoiram_auto_mouse_layer.c
 endif
 
 # TAP_DANCE

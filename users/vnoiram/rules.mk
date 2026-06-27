@@ -19,6 +19,10 @@ ifeq ($(strip $(AUTO_SHIFT_ENABLE)), yes)
   OPT_DEFS += -DAUTO_SHIFT_ENABLE
 	SRC += vnoiram_auto_shift.c
 endif
+ifeq ($(strip $(MINE_AUTO_SHIFT_ENABLE)), yes)
+  OPT_DEFS += -DMINE_AUTO_SHIFT_ENABLE
+	SRC += vnoiram_auto_shift.c
+endif
 
 # JTU
 # option enable and add src

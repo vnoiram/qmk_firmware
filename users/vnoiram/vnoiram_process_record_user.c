@@ -7,6 +7,9 @@
 #if defined(ALT_TAB_ENABLE) || defined(ALT_TAB_BY_LAYER_ENABLE)
 #include "vnoiram_alt_tab.h"
 #endif
+#if defined(AUTO_SHIFT_ENABLE) || defined(MINE_AUTO_SHIFT_ENABLE)
+#include "vnoiram_auto_shift.h"
+#endif
 #ifdef JTU_ENABLE
 #include "jtu_custom_keycodes.h"
 #endif
@@ -35,6 +38,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #if defined(ALT_TAB_ENABLE) || defined(ALT_TAB_BY_LAYER_ENABLE)
   if (process_record_user_alt_tab(keycode, record) == false){
+    return false;
+  }
+#endif
+
+#ifdef MINE_AUTO_SHIFT_ENABLE
+  if (process_record_user_auto_shift(keycode, record) == false) {
     return false;
   }
 #endif

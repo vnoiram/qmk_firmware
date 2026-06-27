@@ -11,20 +11,15 @@
  * --------------------------------------------------------------- */
 #ifdef ALT_TAB_ENABLE
 
-void proc_alt_tab(keyrecord_t *record, uint16_t regist_keycode, bool is_end) {
-    if (record->event.pressed) {
-#ifdef CONSOLE_ENABLE
-        print("alttab tap alt tab\n");
-#endif
-        tap_code16(regist_keycode);
-        if (is_end) {
-            unregister_code(KC_LALT);
-            is_alt_tab_active = false;
-        } else {
-            my_alt_tab_timer = timer_read();
-        }
-    }
-}
+// void proc_alt_tab(keyrecord_t *record, uint16_t regist_keycode, bool is_end) {
+//     if (record->event.pressed) {
+// #ifdef CONSOLE_ENABLE
+//         print("alttab tap alt tab\n");
+// #endif
+//         tap_code(regist_keycode);
+//         my_alt_tab_timer = timer_read();
+//     }
+// }
 
 bool process_record_user_alt_tab(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -63,24 +58,32 @@ bool process_record_user_alt_tab(uint16_t keycode, keyrecord_t *record) {
     if (is_alt_tab_active) {
         switch (keycode) {
             case KC_H:
-                proc_alt_tab(record, KC_LEFT, false);
+                tap_code(KC_LEFT);
+                my_alt_tab_timer = timer_read();
                 return false;
             case KC_J:
-                proc_alt_tab(record, KC_DOWN, false);
+                tap_code(KC_DOWN);
+                my_alt_tab_timer = timer_read();
                 return false;
             case KC_K:
-                proc_alt_tab(record, KC_UP, false);
+                tap_code(KC_UP);
+                my_alt_tab_timer = timer_read();
                 return false;
             case KC_L:
-                proc_alt_tab(record, KC_RGHT, false);
+                tap_code(KC_RGHT);
+                my_alt_tab_timer = timer_read();
                 return false;
             case KC_ENT:
             case LT(_RNUM, KC_ENT):
-                proc_alt_tab(record, KC_ENT, true);
+                tap_code(KC_ENT);
+                unregister_code(KC_LALT);
+                is_alt_tab_active = false;
                 return false;
             case KC_ESC:
             default:
-                proc_alt_tab(record, KC_ESC, true);
+                tap_code(KC_ESC);
+                unregister_code(KC_LALT);
+                is_alt_tab_active = false;
                 return false;
         }
     }

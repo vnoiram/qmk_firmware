@@ -35,5 +35,9 @@ enum custom_keycodes {
 #ifdef MINE_LEADER_ENABLE
   MY_LEADER,
 #endif
+  MY_WIN_ALTF4,
+  MY_WIN_FQUIT,
+  MY_WIN_RECYCLE,
+  MY_WIN_NOTE,
   VNOIRAM_SAFE_RANGE,
 };

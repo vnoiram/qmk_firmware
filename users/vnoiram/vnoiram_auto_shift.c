@@ -42,7 +42,10 @@ uint16_t get_autoshift_timeout(uint16_t keycode, keyrecord_t *record) {
 
 static uint16_t mine_as_key  = KC_NO;
 static uint16_t mine_as_time = 0;
-#define MINE_AS_TIMEOUT 90
+#ifndef MINE_AUTO_SHIFT_TIMEOUT
+#  define MINE_AUTO_SHIFT_TIMEOUT 90
+#endif
+#define MINE_AS_TIMEOUT MINE_AUTO_SHIFT_TIMEOUT
 
 static void mine_as_send(uint16_t kc, bool shifted) {
     keyrecord_t fake = {0};

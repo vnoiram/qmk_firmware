@@ -14,7 +14,7 @@
 void proc_alt_tab(keyrecord_t *record, uint16_t regist_keycode, bool is_end) {
     if (record->event.pressed) {
 #ifdef CONSOLE_ENABLE
-        print("alttab: tap alt tab\n");
+        print("alttab tap alt tab\n");
 #endif
         tap_code16(regist_keycode);
         if (is_end) {
@@ -33,12 +33,12 @@ bool process_record_user_alt_tab(uint16_t keycode, keyrecord_t *record) {
                 if (!is_alt_tab_active) {
                     register_code(KC_LALT);
 #ifdef CONSOLE_ENABLE
-                    print("alttab: kc lalt\n");
+                    print("alttab kc lalt\n");
 #endif
                 } else {
                     register_code(KC_TAB);
 #ifdef CONSOLE_ENABLE
-                    print("alttab: kc tab\n");
+                    print("alttab kc tab\n");
 #endif
                 }
                 my_alt_tab_timer = timer_read();
@@ -46,7 +46,7 @@ bool process_record_user_alt_tab(uint16_t keycode, keyrecord_t *record) {
                 if (!is_alt_tab_active) {
                     if (timer_elapsed(my_alt_tab_timer) < ALT_TAB_TIMEOUT) {
 #ifdef CONSOLE_ENABLE
-                        print("alttab: alt tab layer is on\n");
+                        print("alttab alt tab layer is on\n");
 #endif
                         is_alt_tab_active = true;
                         tap_code(KC_TAB);
@@ -92,7 +92,7 @@ void matrix_scan_user_alt_tab(void) {
     if (is_alt_tab_active) {
         if (timer_elapsed(my_alt_tab_timer) > 1000) {
 #ifdef CONSOLE_ENABLE
-            print("alttab: disable alt_tab\n");
+            print("alttab disable alt_tab\n");
 #endif
             unregister_code(KC_LALT);
             is_alt_tab_active = false;

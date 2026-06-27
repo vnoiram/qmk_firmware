@@ -4,7 +4,7 @@
 #ifdef TO_KEY_ENABLE
 #include "vnoiram_to_key.h"
 #endif
-#ifdef ALT_TAB_ENABLE
+#if defined(ALT_TAB_ENABLE) || defined(ALT_TAB_BY_LAYER_ENABLE)
 #include "vnoiram_alt_tab.h"
 #endif
 #ifdef JTU_ENABLE
@@ -33,7 +33,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 #endif
 
-#ifdef ALT_TAB_ENABLE
+#if defined(ALT_TAB_ENABLE) || defined(ALT_TAB_BY_LAYER_ENABLE)
   if (process_record_user_alt_tab(keycode, record) == false){
     return false;
   }

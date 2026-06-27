@@ -5,7 +5,7 @@ enum custom_keycodes {
   // CTRL_J = KEYBALL_SAFE_RANGE,
   // MY_SPACE,
   // MY_RESET,
-#ifdef ALT_TAB_ENABLE
+#if defined(ALT_TAB_ENABLE) || defined(ALT_TAB_BY_LAYER_ENABLE)
   MY_ALT_TAB = KEYBALL_SAFE_RANGE,
 #ifdef JTU_ENABLE
   JTU_TOGGLE,
@@ -14,7 +14,7 @@ enum custom_keycodes {
   TO_KEY_TIME,
 #endif
 #else
-  // LT1_SCRL_TO,
+  // ALT_TAB disabled
   // ALT_TAB_LEFT,
   // ALT_TAB_UP,
   // ALT_TAB_DOWN,

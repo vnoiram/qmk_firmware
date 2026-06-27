@@ -23,7 +23,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM + 1350;
         case KC_BSLS:
             return TAPPING_TERM + 25;
-        case LT(_ALTMOVE,KC_BSPC):
+        // case LT(_ALTMOVE,KC_BSPC):
         case LCTL_T(KC_ESC):
         case LT(_SFT,KC_SPC):
         case LT(_SPCL,KC_ESC):
@@ -39,7 +39,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #ifdef RETRO_TAPPING_PER_KEY
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(_ALTMOVE,KC_BSPC):
+        // case LT(_ALTMOVE,KC_BSPC):
         case LCTL_T(KC_ESC):
         case LT(_RNUM,KC_ENT):
         case LT(_SPCL,KC_ESC):

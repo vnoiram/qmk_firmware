@@ -13,7 +13,7 @@ enum {
   _SFT,
   _SPCL,
   _SCRL,
-  _ALTMOVE,
+  // _ALTMOVE,
   _RNUM,
 #ifdef ALT_TAB_BY_LAYER_ENABLE
   _ALTTAB,

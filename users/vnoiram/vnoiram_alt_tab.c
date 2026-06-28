@@ -56,6 +56,7 @@ bool process_record_user_alt_tab(uint16_t keycode, keyrecord_t *record) {
     }
 
     if (is_alt_tab_active) {
+        if (!record->event.pressed) return false;
         switch (keycode) {
             case KC_H:
                 tap_code(KC_LEFT);

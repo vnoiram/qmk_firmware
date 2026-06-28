@@ -562,19 +562,23 @@ void process_action(keyrecord_t *record, action_t action) {
             }
 #endif // NO_ACTION_TAPPING
         } break;
-#ifdef EXTRAKEY_ENABLE
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_SYSTEM_ENABLE) || defined(EXTRAKEY_CONSUMER_ENABLE)
         /* other HID usage */
         case ACT_USAGE:
             switch (action.usage.page) {
+#    if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_SYSTEM_ENABLE)
                 case PAGE_SYSTEM:
                     host_system_send(event.pressed ? action.usage.code : 0);
                     break;
+#    endif
+#    if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_CONSUMER_ENABLE)
                 case PAGE_CONSUMER:
                     host_consumer_send(event.pressed ? action.usage.code : 0);
                     break;
+#    endif
             }
             break;
-#endif // EXTRAKEY_ENABLE
+#endif // EXTRAKEY_ENABLE || EXTRAKEY_SYSTEM_ENABLE || EXTRAKEY_CONSUMER_ENABLE
         /* Mouse key */
         case ACT_MOUSEKEY:
             register_mouse(action.key.code, event.pressed);
@@ -973,9 +977,11 @@ __attribute__((weak)) void register_code(uint8_t code) {
         add_mods(MOD_BIT(code));
         send_keyboard_report();
 
-#ifdef EXTRAKEY_ENABLE
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_SYSTEM_ENABLE)
     } else if (IS_SYSTEM_KEYCODE(code)) {
         host_system_send(KEYCODE2SYSTEM(code));
+#endif
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_CONSUMER_ENABLE)
     } else if (IS_CONSUMER_KEYCODE(code)) {
         host_consumer_send(KEYCODE2CONSUMER(code));
 #endif
@@ -1030,9 +1036,11 @@ __attribute__((weak)) void unregister_code(uint8_t code) {
         del_mods(MOD_BIT(code));
         send_keyboard_report();
 
-#ifdef EXTRAKEY_ENABLE
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_SYSTEM_ENABLE)
     } else if (IS_SYSTEM_KEYCODE(code)) {
         host_system_send(0);
+#endif
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_CONSUMER_ENABLE)
     } else if (IS_CONSUMER_KEYCODE(code)) {
         host_consumer_send(0);
 #endif
@@ -1128,8 +1136,10 @@ void clear_keyboard_but_mods(void) {
  * FIXME: Needs documentation.
  */
 void clear_keyboard_but_mods_and_keys(void) {
-#ifdef EXTRAKEY_ENABLE
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_SYSTEM_ENABLE)
     host_system_send(0);
+#endif
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_CONSUMER_ENABLE)
     host_consumer_send(0);
 #endif
     clear_weak_mods();

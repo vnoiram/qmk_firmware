@@ -65,10 +65,12 @@ action_t action_for_keycode(uint16_t keycode) {
         case MODIFIER_KEYCODE_RANGE:
             action.code = ACTION_KEY(keycode);
             break;
-#ifdef EXTRAKEY_ENABLE
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_SYSTEM_ENABLE)
         case SYSTEM_KEYCODE_RANGE:
             action.code = ACTION_USAGE_SYSTEM(KEYCODE2SYSTEM(keycode));
             break;
+#endif
+#if defined(EXTRAKEY_ENABLE) || defined(EXTRAKEY_CONSUMER_ENABLE)
         case CONSUMER_KEYCODE_RANGE:
             action.code = ACTION_USAGE_CONSUMER(KEYCODE2CONSUMER(keycode));
             break;

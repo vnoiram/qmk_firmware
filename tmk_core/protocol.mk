@@ -23,8 +23,18 @@ ifeq ($(strip $(MOUSE_ENABLE)), yes)
     endif
 endif
 
+ifeq ($(strip $(CONSUMER_ENABLE)), yes)
+    OPT_DEFS += -DEXTRAKEY_CONSUMER_ENABLE
+    SHARED_EP_ENABLE = yes
+endif
+
+ifeq ($(strip $(SYSTEM_CONTROL_ENABLE)), yes)
+    OPT_DEFS += -DEXTRAKEY_SYSTEM_ENABLE
+    SHARED_EP_ENABLE = yes
+endif
+
 ifeq ($(strip $(EXTRAKEY_ENABLE)), yes)
-    OPT_DEFS += -DEXTRAKEY_ENABLE
+    OPT_DEFS += -DEXTRAKEY_ENABLE -DEXTRAKEY_CONSUMER_ENABLE -DEXTRAKEY_SYSTEM_ENABLE
     SHARED_EP_ENABLE = yes
 endif
 

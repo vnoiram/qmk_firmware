@@ -74,3 +74,9 @@ ifeq ($(strip $(TO_KEY_ENABLE)), yes)
 	SRC += vnoiram_to_key.c
 endif
 
+# BSPC_COMBO
+ifeq ($(strip $(BSPC_COMBO_ENABLE)), yes)
+  OPT_DEFS += -DBSPC_COMBO_ENABLE
+	SRC += vnoiram_bspc_combo.c
+endif
+

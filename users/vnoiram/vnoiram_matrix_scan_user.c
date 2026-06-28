@@ -10,6 +10,9 @@
 #ifdef MINE_LEADER_ENABLE
 #include "vnoiram_leader.h"
 #endif
+#ifdef BSPC_COMBO_ENABLE
+#include "vnoiram_bspc_combo.h"
+#endif
 #ifdef CONSOLE_ENABLE
 #include "print.h"
 #endif
@@ -30,6 +33,10 @@ void matrix_scan_user(void) {
 
 #ifdef MINE_LEADER_ENABLE
   matrix_scan_user_leader();
+#endif
+
+#ifdef BSPC_COMBO_ENABLE
+  bspc_combo_scan();
 #endif
 
   matrix_scan_keymap();

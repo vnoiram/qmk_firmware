@@ -16,6 +16,9 @@
 #ifdef JTU_ENABLE
 #include "jtu_custom_keycodes.h"
 #endif
+#ifdef BSPC_COMBO_ENABLE
+#include "vnoiram_bspc_combo.h"
+#endif
 #include "vnoiram_layer_enum.h"
 #ifdef CONSOLE_ENABLE
 #include "print.h"
@@ -33,6 +36,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
 // need first!!
+#ifdef BSPC_COMBO_ENABLE
+  if (process_record_user_bspc_combo(keycode, record) == false) {
+    return false;
+  }
+#endif
+
 #ifdef TO_KEY_ENABLE
   if (process_record_user_to_key(keycode, record) == false){
     return false;

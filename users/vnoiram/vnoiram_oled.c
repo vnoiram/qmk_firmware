@@ -83,13 +83,14 @@ void mine_oled_render(void) {
 
     ssd1306_set_pos(0, 0);
     // "JTU ON " or "JTU OFF" — both 7 chars, same column width
-    ssd1306_write_str(is_jtu_active ? "JTU ON " : "JTU OFF");
+    ssd1306_write_str(is_jtu_active ? "JTU 1" : "JTU 0");
     ssd1306_write_str(" CPI ");
     uint8_t cpi = keyball_get_cpi();
     ssd1306_write_char('0' + cpi / 10);
     ssd1306_write_char('0' + cpi % 10);
     ssd1306_write_str("00 DIV ");
     ssd1306_write_char('0' + keyball_get_scroll_div());
+    ssd1306_write_char(' ');
 }
 
 #elif defined(OLED_ENABLE)
@@ -116,7 +117,7 @@ bool oled_task_user(void) {
 #endif /* MASTER_RIGHT / MASTER_LEFT */
 
 void oledkit_render_info_user(void) {
-    oled_write(is_jtu_active ? PSTR("JTU ON ") : PSTR("JTU OFF "), false);
+    oled_write(is_jtu_active ? PSTR("JTU 1 ") : PSTR("JTU 0 "), false);
 
     uint8_t cpi = keyball_get_cpi();
     oled_write_P(PSTR("CPI "), false);
@@ -126,6 +127,7 @@ void oledkit_render_info_user(void) {
 
     oled_write_P(PSTR(" DIV "), false);
     oled_write_char('0' + keyball_get_scroll_div(), false);
+    oled_write_P(PSTR(" "), false);
 }
 
 #endif /* MINE_OLED_ENABLE / OLED_ENABLE */

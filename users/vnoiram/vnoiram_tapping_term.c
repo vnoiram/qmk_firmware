@@ -7,9 +7,6 @@
 #ifdef TAPPING_TERM_PER_KEY
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LCTL_T(KC_A):
-        case LSFT_T(KC_Z):
-            return TAPPING_TERM + 1750;
         case LGUI_T(KC_X):
         case LALT_T(KC_C):
 #ifdef TAP_DANCE_ENABLE
@@ -24,6 +21,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case KC_BSLS:
             return TAPPING_TERM + 25;
         // case LT(_ALTMOVE,KC_BSPC):
+        case LCTL_T(KC_A):
+        case LSFT_T(KC_Z):
         case LCTL_T(KC_ESC):
         case LT(_SFT,KC_SPC):
         case LT(_SPCL,KC_ESC):

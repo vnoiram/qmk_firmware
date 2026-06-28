@@ -47,9 +47,11 @@ ifeq ($(strip $(ONE_HAND_GAME_ENABLE)), yes)
 endif
 
 # oled
-ifeq ($(strip $(OLED_ENABLE)), yes)
-  # Include my fancy rgb functions source here
-	SRC += vnoiram_oled.c
+ifeq ($(strip $(MINE_OLED_ENABLE)), yes)
+    OPT_DEFS += -DMINE_OLED_ENABLE
+    SRC += vnoiram_oled.c
+else ifeq ($(strip $(OLED_ENABLE)), yes)
+    SRC += vnoiram_oled.c
 endif
 
 # POINTING_DEVICE_AUTO_MOUSE_ENABLE

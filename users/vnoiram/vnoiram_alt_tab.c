@@ -79,7 +79,7 @@ bool process_record_user_alt_tab(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_LALT);
                 is_alt_tab_active = false;
                 return false;
-            case KC_ESC:
+            // case KC_ESC:
             default:
                 tap_code(KC_ESC);
                 unregister_code(KC_LALT);

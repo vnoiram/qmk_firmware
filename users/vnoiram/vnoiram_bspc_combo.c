@@ -17,7 +17,8 @@ typedef struct {
     uint16_t action;
 } bspc_combo_entry_t;
 
-static const bspc_combo_entry_t PROGMEM bspc_combos[] = {
+// PROGMEM を外して RAM に置く（20 bytes）→ pgm_read_word 不要
+static const bspc_combo_entry_t bspc_combos[] = {
 #define BSPC_COMBO(p, a) {p, a},
 #include "bspc_combo_table.h"
 #undef BSPC_COMBO
@@ -25,8 +26,8 @@ static const bspc_combo_entry_t PROGMEM bspc_combos[] = {
 
 static uint16_t bspc_get_combo(uint16_t kc) {
     for (uint8_t i = 0; i < ARRAY_SIZE(bspc_combos); i++) {
-        if (pgm_read_word(&bspc_combos[i].partner) == kc) {
-            return pgm_read_word(&bspc_combos[i].action);
+        if (bspc_combos[i].partner == kc) {
+            return bspc_combos[i].action;
         }
     }
     return 0;
